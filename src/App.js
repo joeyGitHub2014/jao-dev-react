@@ -14,37 +14,37 @@ function App() {
   const [imageNames, setNames] = useState([]);
   const [isotope, setIsotope] = useState(null);
   const [isLoading, setIsLoading] = useState(true)
-  
+
   console.log(React.createElement);
 
- 
+
   useEffect(() => {
-      const fetchItems = async () => {
-        const result = await axios (`http://localhost:3000/json/projectInfo.json`)
-         console.log(result.data)
-         setNames(result.data)
-         setIsLoading(false)
-      }
-      fetchItems()
+    const fetchItems = async () => {
+      const result = await axios(`http://localhost:3000/json/projectInfo.json`)
+      console.log(result.data)
+      setNames(result.data)
+      setIsLoading(false)
+    }
+    fetchItems()
   }, [])
 
-    useEffect(() => {
-      if(!isLoading) {
-         setIsotope(
-          new Isotope('.filter-container', {// filter-container: className of the parent of the isotope elements
-            itemSelector: '.filter-item', // filter-item: className of the isotope elements
-            layoutMode: 'masonry',          // for horizontal isotope
-          })
-        )
-      }
-  }, [ isLoading])
+  useEffect(() => {
+    if (!isLoading) {
+      setIsotope(
+        new Isotope('.filter-container', {// filter-container: className of the parent of the isotope elements
+          itemSelector: '.filter-item', // filter-item: className of the isotope elements
+          layoutMode: 'masonry',          // for horizontal isotope
+        })
+      )
+    }
+  }, [isLoading])
 
   return (
     <div className="App"  >
-      <Nav  />
+      <Nav />
       <Header className="App-header" />
       <About />
-      <Projects imageNames={imageNames} isotope={isotope} isLoading= {isLoading}/>
+      <Projects imageNames={imageNames} isotope={isotope} isLoading={isLoading} />
       <Footer />
     </div>
   );
